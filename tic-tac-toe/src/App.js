@@ -8,8 +8,11 @@ function App() {
 
   let status = "";
   const winner = calculateWinner(squares);
+  const isSquaresFull = isFull(squares);
   if (winner) {
     status = "Winner: " + winner;
+  } else if (!winner && isSquaresFull) {
+    status = "Tie Game";
   } else {
     status = "Turn: " + (xIsNext ? "X" : "O");
   }
@@ -59,6 +62,12 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+function isFull(squares) {
+  return squares.every((square) => {
+    return square !== null;
+  });
 }
 
 export default App;
